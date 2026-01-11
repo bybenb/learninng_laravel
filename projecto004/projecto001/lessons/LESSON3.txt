@@ -1,0 +1,155 @@
+Aula 3 — Primeiro projeto Laravel (modo profissional)
+🎯 Objetivo da aula
+
+    Criar um projeto limpo
+
+    Rodar sem erro
+
+    Entender o .env de verdade
+
+    Versionar com Git desde o primeiro commit
+
+1️⃣ Criando o projeto Laravel
+
+Escolhe UMA forma (não mistura).
+🔹 Forma profissional (Composer)
+
+composer create-project laravel/laravel projeto-laravel
+cd projeto-laravel
+
+Ou, se tiver o Installer:
+
+laravel new projeto-laravel
+cd projeto-laravel
+
+📌 Se essa etapa falhar → o problema é ambiente, não Laravel.
+2️⃣ Rodando o servidor
+
+Laravel já traz servidor embutido.
+
+php artisan serve
+
+Vai aparecer algo como:
+
+Starting Laravel development server: http://127.0.0.1:8000
+
+Abre no navegador.
+
+✔ Página do Laravel apareceu?
+👉 Projeto funcionando.
+3️⃣ .env explicado como gente grande
+
+Aqui está o cérebro da configuração.
+O que é .env?
+
+    Arquivo de ambiente
+
+    Configura sem mexer no código
+
+    Cada máquina pode ter um diferente
+
+📌 Em produção, esse arquivo muda totalmente.
+Exemplo real:
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:xxxxx
+APP_DEBUG=true
+APP_URL=http://localhost
+
+O que importa de verdade:
+
+    APP_ENV
+
+        local, production, testing
+
+    APP_DEBUG
+
+        true → mostra erros
+
+        false → produção
+
+    APP_KEY
+
+        Criptografia
+
+        Se perder isso, perde sessões e senhas
+
+Banco de dados:
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=root
+DB_PASSWORD=
+
+📌 Nunca coloca dados do banco direto no código.
+Regra de ouro
+
+❌ Nunca subir .env pro Git
+✔ Sempre usar .env.example
+
+Laravel já faz isso por ti.
+4️⃣ Git desde o início (mentalidade profissional)
+
+Projeto sem Git = projeto descartável.
+Inicializando Git:
+
+git init
+
+Verifica:
+
+git status
+
+Laravel já vem com .gitignore pronto:
+
+    vendor/
+
+    .env
+
+    cache
+
+    logs
+
+Primeiro commit (importante)
+
+git add .
+git commit -m "Initial Laravel project"
+
+📌 Esse commit é teu ponto zero.
+5️⃣ Pequena modificação (confiança)
+
+Abre:
+
+resources/views/welcome.blade.php
+
+Altera o texto:
+
+<h1>Meu primeiro projeto Laravel</h1>
+
+Atualiza no navegador.
+
+👉 Funcionou?
+Agora tu sabes onde mexer sem quebrar.
+🧠 O que tu aprendeste aqui (resumo mental)
+
+    Laravel não é pesado
+
+    .env separa código de configuração
+
+    Git não é opcional
+
+    Tudo começa organizado
+
+🛠️ Exercício prático (sem pular)
+
+    Criar repositório no GitHub
+
+    Subir o projeto
+
+    Clonar em outra pasta
+
+    Criar novo .env e rodar
+
+Se isso funcionar, estás pronto para trabalhar em equipe.

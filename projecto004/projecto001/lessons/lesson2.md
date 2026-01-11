@@ -1,7 +1,7 @@
 # Aula 2 — Ambiente profissional (setup de dev sério)
 
 
-### 1.PHP + Composer (a base de tudo)
+### 1. PHP + Composer (a base de tudo)
 
 > PHP
 
@@ -226,7 +226,7 @@ Se entender isso, 50% do Laravel está dominado.
 ❌ Ignorar .env
 ❌ Não usar Git
 
-#### 🛠️ Exercício prático (obrigatório)
+### 🛠️ Exercício prático (obrigatório)
 
 1.    Criar um projeto Laravel
 
