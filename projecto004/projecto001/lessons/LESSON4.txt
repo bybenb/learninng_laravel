@@ -1,0 +1,169 @@
+Aula 4 — Rotas como profissional (Laravel sem amadorismo)
+ Objetivo da aula
+
+    Dominar todos os métodos HTTP
+
+    Organizar rotas como projeto grande
+
+    Usar nomes de rotas (padrão profissional)
+
+ Métodos HTTP (não é detalhe, é arquitetura)
+
+Laravel trabalha em cima do HTTP de verdade.
+🔹 GET — buscar / mostrar
+
+Usado para:
+
+    Páginas
+
+    Listagens
+
+    Formulários
+
+Route::get('/users', function () {
+    return 'Lista de usuários';
+});
+
+📌 Não altera dados.
+🔹 POST — criar
+
+Usado para:
+
+    Enviar formulário
+
+    Criar registros
+
+Route::post('/users', function () {
+    return 'Usuário criado';
+});
+
+🔹 PUT — atualizar tudo
+
+Route::put('/users/{id}', function ($id) {
+    return "Usuário {$id} atualizado";
+});
+
+🔹 PATCH — atualizar parte
+
+Route::patch('/users/{id}', function ($id) {
+    return "Usuário {$id} parcialmente atualizado";
+});
+
+🔹 DELETE — apagar
+
+Route::delete('/users/{id}', function ($id) {
+    return "Usuário {$id} removido";
+});
+
+📌 CRUD completo = GET + POST + PUT/PATCH + DELETE
+2. Simulando tudo no browser (sem frontend ainda)
+
+HTML só aceita GET e POST.
+Laravel resolve isso com method spoofing.
+
+<form method="POST" action="/users/1">
+    @csrf
+    @method('PUT')
+    <button>Atualizar</button>
+</form>
+
+📌 Isso é padrão profissional.
+3.  Route Groups (organização de sistema real)
+
+Projeto cresce → rotas explodem → bagunça.
+🔹 Group simples
+
+Route::group([], function () {
+    Route::get('/dashboard', fn() => 'Dashboard');
+    Route::get('/profile', fn() => 'Perfil');
+});
+
+🔹 Group com prefix
+
+Route::prefix('admin')->group(function () {
+    Route::get('/users', fn() => 'Admin usuários');
+    Route::get('/settings', fn() => 'Configurações');
+});
+
+URLs:
+
+/admin/users
+/admin/settings
+
+🔹 Group com middleware
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', fn() => 'Dashboard');
+});
+
+📌 Só entra logado.
+🔹 Tudo junto (padrão real)
+
+Route::prefix('admin')
+    ->middleware('auth')
+    ->group(function () {
+        Route::get('/users', fn() => 'Usuários');
+        Route::get('/reports', fn() => 'Relatórios');
+    });
+
+4. Route Naming (isso é nível profissional)
+🔹 Nomeando rotas
+
+Route::get('/login', function () {
+    return 'Login';
+})->name('login');
+
+🔹 Usando o nome (em vez de URL)
+
+<a href="{{ route('login') }}">Entrar</a>
+
+📌 Vantagem brutal:
+
+    Muda URL
+
+    Nada quebra
+
+🔹 Naming em grupos
+
+Route::prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/users', fn() => 'Users')->name('users');
+    });
+
+Nome final:
+
+admin.users
+
+Uso:
+
+route('admin.users')
+
+🧠 Erros comuns (evita agora)
+
+❌ URLs hardcoded nas views
+❌ Todas rotas num arquivo gigante
+❌ Não usar nomes
+❌ Ignorar métodos HTTP
+🛠️ Exercício prático (obrigatório)
+
+Cria:
+
+    CRUD fake de produtos (sem banco)
+
+Rotas:
+
+    GET /products
+
+    POST /products
+
+    PUT /products/{id}
+
+    DELETE /products/{id}
+
+Extras:
+
+    Usa prefix
+
+    Usa names
+
