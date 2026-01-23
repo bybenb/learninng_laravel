@@ -1,0 +1,196 @@
+Aula 6 — Views com Blade (elegância profissional)
+Objetivo da aula
+
+    Dominar a sintaxe Blade
+    Criar layouts reutilizáveis
+    Usar components, includes e slots como dev sênior
+
+1- Blade syntax (o essencial que resolve 90%)
+
+Blade é:
+- HTML + diretivas simples
+- Zero complicação
+🔹 Exibindo dados
+
+{{ $nome }}
+
+Seguro por padrão (escapa HTML).
+🔹 Condicionais
+
+@if($user)
+    <p>Olá, {{ $user->name }}</p>
+@else
+    <p>Visitante</p>
+@endif
+
+🔹 Loops
+
+@foreach($products as $product)
+    <li>{{ $product->name }}</li>
+@endforeach
+
+🔹 Comentários Blade
+
+{{-- Isso não aparece no HTML --}}
+
+🔹 Código PHP (evitar, mas existe)
+
+@php
+    $total = 100;
+@endphp
+
+📌 Usa só se não tiver alternativa.
+
+
+
+2- Layouts (base de qualquer sistema sério)
+Criando layout principal
+
+resources/views/layouts/app.blade.php
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@yield('title', 'Meu Sistema')</title>
+</head>
+<body>
+
+<header>
+    <h1>Meu Sistema</h1>
+</header>
+
+<main>
+    @yield('content')
+</main>
+
+<footer>
+    © {{ date('Y') }}
+</footer>
+
+</body>
+</html>
+
+Usando o layout
+
+@extends('layouts.app')
+
+@section('title', 'Home')
+
+@section('content')
+    <h2>Bem-vindo!</h2>
+@endsection
+
+
+
+Resultado:
+    Código limpo
+    Um layout
+    Mil páginas
+
+
+
+
+3-  Includes (reuso simples)
+
+Usado para:
+
+    Navbar
+
+    Footer
+
+    Alertas
+
+Criando include
+
+resources/views/partials/navbar.blade.php
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/products">Produtos</a>
+</nav>
+
+Chamando:
+
+@include('partials.navbar')
+
+ Simples, direto e eficaz.
+
+
+
+4- Components (nível profissional)
+
+Components são views inteligentes e reutilizáveis.
+Criando component
+
+php artisan make:component Button
+
+Cria:
+
+    app/View/Components/Button.php
+
+    resources/views/components/button.blade.php
+
+View do component
+
+<button class="btn">
+    {{ $slot }}
+</button>
+
+Usando:
+
+<x-button>
+    Salvar
+</x-button>
+
+Isso escala muito bem.
+
+
+5-  Slots (flexibilidade total)
+
+Slots permitem conteúdo dinâmico dentro do component.
+Slot nomeado
+
+<div class="card">
+    <div class="card-header">
+        {{ $header }}
+    </div>
+
+    <div class="card-body">
+        {{ $slot }}
+    </div>
+</div>
+
+Uso:
+
+<x-card>
+    <x-slot name="header">
+        Título do Card
+    </x-slot>
+
+    Conteúdo principal
+</x-card>
+
+Isso é design system.
+
+
+
+6- Quando usar o quê (regra prática)
+
+    @include → pedaço simples
+
+    <x-component> → elemento reutilizável
+
+    @extends → estrutura da página
+
+Se usar tudo certo:
+- projeto limpo
+- manutenção fácil
+- time feliz
+
+
+
+7- HOMEWORK
+    Criar layout principal
+    Criar navbar como include
+    Criar botão como component
+    Usar slot no component

@@ -1,0 +1,191 @@
+Aula 5 — Controllers (cérebro do Laravel)
+
+
+Controller é:
+- quem recebe a requisição
+- decide o que fazer
+- retorna uma resposta
+
+Ele não deve Falar direto com HTML pesado, Ter SQL e Ter regra complexa gigante;
+
+O Controller só coordena, ele não faz tudo.
+
+
+2- Criando um Controller simples
+
+
+```
+php artisan make:controller PageController
+```
+Arquivo:
+
+```
+app/Http/Controllers/PageController.php
+```
+
+```
+class PageController extends Controller
+{
+    public function home()
+    {
+        return view('home');
+    }
+
+    public function sobre()
+    {
+        return view('sobre');
+    }
+}
+```
+
+
+
+Ligando na rota:
+```
+Route::get('/', [PageController::class, 'home']);
+Route::get('/sobre', [PageController::class, 'sobre']);
+```
+
+
+RESULTADO:
+
+-Rota limpa
+- Lógica fora da rota
+
+- Projeto organizado
+
+
+
+3- Controller Resource
+
+É padrão de mercado, é usado quando:
+- Tens CRUD
+- Tens entidade (User, Product, Post…)
+Criando:
+
+```
+php artisan make:controller ProductController --resource
+```
+
+Ele cria:
+
+```
+index()    // listar
+create()   // formulário
+store()    // salvar
+show()     // mostrar um
+edit()     // editar
+update()   // atualizar
+destroy()  // apagar
+```
+
+Rota mágica:
+
+```
+Route::resource('products', ProductController::class);
+```
+
+Laravel cria todas as rotas automaticamente.
+
+4- "Controller simples" vs "Resource"
+🔹 Simples
+
+Usa quando:
+
+- Páginas estáticas
+- Fluxo específico
+- Ações únicas
+
+Ex:
+```
+LoginController
+DashboardController
+```
+
+🔹 Resource
+
+Usa quando:
+
+- CRUD
+- Entidade clara
+- Sistema cresce
+
+Ex:
+```
+UserController
+ProductController
+OrderController
+```
+
+
+
+📌 Misturar tudo = caos.
+5- Boas práticas 
+
+
+5.1 Controller fino
+
+```
+public function store(Request $request)
+{
+    Product::create($request->validated());
+    return redirect()->route('products.index');
+}
+```
+
+5.2 ❌ Controller gordo (erro comum)
+
+```
+public function store(Request $request)
+{
+    // validação
+    // regra de negócio
+    // cálculo
+    // SQL
+    // email
+    // log
+}
+```
+Se passou de 20–30 linhas, algo está errado.
+
+
+
+6- Separação de responsabilidades
+
+📦 Model
+    - Dados
+    - Regras simples
+    - Relacionamentos
+
+🧠 Controller
+    - Orquestra
+    - Chama Model
+    - Retorna resposta
+
+🎨 View
+    - Exibição
+    - Zero regra pesada
+
+
+
+Service (quando crescer)
+
+    - Regras complexas
+    - Processos
+    - Integrações
+
+
+
+7- HOMEWORK
+
+1. Criar ProductController (resource)
+
+2. Criar rotas resource
+
+3.Implementar só:
+    index()
+    create()
+
+4. Criar views básicas
+
+ 

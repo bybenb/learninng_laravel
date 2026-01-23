@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+ <form method="POST" action="/ninjas/1">
+
+    <label for="nNome">Seu Nome </label><input type="text" name="" id="">
+    <br><br>
+    
+    <label for="nEmail">seu Gmail </label>
+    <input type="email" name="nEmail" id="nEmail">
+    <br><br>
+
+    <label for="nNoumero">O Id</label>
+    <input type="number" name="nNoumero" id="nNoumero">
+    <br><br>
+    
+    @csrf
+    @method('PUT')
+    <button>Atualizar</button>
+</form>
+    
+</body>
+</html>

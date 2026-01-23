@@ -29,3 +29,43 @@ Route::get('/hokage', function () {
 Route::get('/hokage/{nome}', function ($nome) {
     return view('hokage', ['nome' => $nome]);
 });
+
+
+
+
+
+// AULA 4
+
+
+
+
+Route::get('/ninjas', function () {
+    return view('ninjas');
+});
+
+
+
+
+Route::post('/ninjas', function () {
+    return 'Ninja Criado';
+});
+
+
+
+Route::put('/ninjas/{id}', function($id) {
+    return "Ninja nº {$id} atualizado";
+});
+
+
+Route::patch('/ninja/{id}', function($id) {
+    return "Ninja {$id} atualizado parcialmente";
+    }
+);
+
+
+Route::delete('/ninjas/{id}', function ($id) {
+    return "Ninja {$id} Morto...";
+});
+
+
+

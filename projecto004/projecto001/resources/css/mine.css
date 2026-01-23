@@ -1,0 +1,43 @@
+
+
+body {
+    color: darkgreen;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: #7e2a0c;
+    border-color: #ffb869;
+}
+
+h1, h2, h3 {
+    
+    display: flex;
+    font-family: fantasy;
+    font-weight: 700;
+    justify-content: space-evenly;
+    background-color: aqua;
+}
+
+
+a {
+    text-decoration: none;
+    color: #19b619;
+    transition: all ease-in-out 1s;
+
+}
+
+a:hover {
+    box-shadow: 0.3px 0.3px 0.7px darkgrey;
+
+}
+
+div#dono {
+    position: absolute;
+    right: 9px;
+    bottom: 9px;
+
+    border: greenyellow 1px solid;
+    border-radius: 1.1em;
+    padding: .7em;
+    font-size: .5em;
+
+    background: transparent;
+}
