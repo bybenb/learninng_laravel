@@ -2,7 +2,7 @@
 
 
 
-Comecei estudar Laravel por conselho do "@batistalando7" (github); ele quem me fez conhecer o "Desenvolvimento Web". Granda Pessoa...
+Comecei estudar Laravel por conselho do "`@batistalando7`" **(github)**; ele quem me fez conhecer o "Desenvolvimento Web". Granda Pessoa...
 
 Este repositório não tem licensa MIT.
 Então cuidado ao querer redistribuir, kkkk: vais se dar mal...
@@ -12,8 +12,8 @@ Então cuidado ao querer redistribuir, kkkk: vais se dar mal...
 
 
 
-## 
-[English]
+
+###  [English]    
 I'm Beny Basawulo Kiamvu, a computer engineering student.
 I'm also known as "Beny B. Reis II" (@bkapa8 or @bybenb) on social media.
 
